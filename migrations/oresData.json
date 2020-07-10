@@ -1,0 +1,342 @@
+[
+  {
+    "code": "BAIN001-10",
+    "name": "TALLER DE INGENIERIA I",
+    "weekhours": 3
+  },
+  {
+    "code": "BAIN009-07",
+    "name": "COMUNICACION: IDIOMA ESPAÑOL",
+    "weekhours": 3
+  },
+  {
+    "code": "BAIN012-07",
+    "name": "GEOMETRIA PARA INGENIERIA",
+    "weekhours": 3
+  },
+  {
+    "code": "BAIN013-13",
+    "name": "QUIMICA GENERAL",
+    "weekhours": 3
+  },
+  {
+    "code": "BAIN017-07",
+    "name": "ALGEBRA PARA INGENIERIA",
+    "weekhours": 3
+  },
+  {
+    "code": "BAIN018-13",
+    "name": "GEOMETRIA",
+    "weekhours": 3
+  },
+  {
+    "code": "BAIN019-07",
+    "name": "QUIMICA PARA INGENIERIA",
+    "weekhours": 3
+  },
+  {
+    "code": "BAIN027-13",
+    "name": "COMPRENSIÓN DEL INGLÉS",
+    "weekhours": 3
+  },
+  {
+    "code": "BAIN031-10",
+    "name": "TALLER DE INGENIERIA II",
+    "weekhours": 3
+  },
+  {
+    "code": "BAIN032-14",
+    "name": "QUIMICA GENERAL",
+    "weekhours": 3
+  },
+  {
+    "code": "BAIN033-13",
+    "name": "COMUNICACIÓN EN ESPAÑOL",
+    "weekhours": 3
+  },
+  {
+    "code": "BAIN034-14",
+    "name": "GEOMETRIA",
+    "weekhours": 3
+  },
+  {
+    "code": "BAIN036-07",
+    "name": "ALGEBRA LINEAL PARA INGENIERIA",
+    "weekhours": 3
+  },
+  {
+    "code": "BAIN037-07",
+    "name": "CALCULO I PARA INGENIERIA",
+    "weekhours": 3
+  },
+  {
+    "code": "BAIN038-07",
+    "name": "FISICA I PARA INGENIERIA",
+    "weekhours": 3
+  },
+  {
+    "code": "BAIN039-07",
+    "name": "COMUNICACION: IDIOMA INGLES",
+    "weekhours": 3
+  },
+  {
+    "code": "BAIN041-07",
+    "name": "ECUACIONES DIFERENCIALES PARA INGENIERIA",
+    "weekhours": 3
+  },
+  {
+    "code": "BAIN042-07",
+    "name": "CALCULO II PARA INGENIERIA",
+    "weekhours": 3
+  },
+  {
+    "code": "BAIN043-07",
+    "name": "FISICA II PARA INGENIERIA",
+    "weekhours": 3
+  },
+  {
+    "code": "BAIN046-10",
+    "name": "TALLER DE INGENIERIA III",
+    "weekhours": 3
+  },
+  {
+    "code": "BAIN047-13",
+    "name": "COMUNICACIÓN PROFESIONAL",
+    "weekhours": 3
+  },
+  {
+    "code": "BAIN048-13",
+    "name": "INTRODUCCION A LA COMUNICACIÓN EN INGLES",
+    "weekhours": 3
+  },
+  {
+    "code": "BAIN049-13",
+    "name": "ALGEBRA E INTRODUCCION AL CALCULO",
+    "weekhours": 3
+  },
+  {
+    "code": "BAIN052-07",
+    "name": "ESTADISTICA Y PROBABILIDADES PARA INGENIERIA",
+    "weekhours": 3
+  },
+  {
+    "code": "BAIN053-07",
+    "name": "METODOS NUMERICOS PARA INGENIERIA",
+    "weekhours": 3
+  },
+  {
+    "code": "BAIN054-07",
+    "name": "FISICA III PARA INGENIERIA",
+    "weekhours": 3
+  },
+  {
+    "code": "BAIN055-13",
+    "name": "ALGEBRA LINEAL",
+    "weekhours": 3
+  },
+  {
+    "code": "BAIN056-10",
+    "name": "TALLER DE INGENIERIA IV",
+    "weekhours": 3
+  },
+  {
+    "code": "BAIN057-13",
+    "name": "CALCULO EN IR",
+    "weekhours": 3
+  },
+  {
+    "code": "BAIN058-14",
+    "name": "COMPRENSIÓN DEL INGLÉS",
+    "weekhours": 3
+  },
+  {
+    "code": "BAIN059-13",
+    "name": "QUIMICA DE PROCESOS",
+    "weekhours": 3
+  },
+  {
+    "code": "BAIN061-13",
+    "name": "INGLES COMUNICACIONAL BÁSICO",
+    "weekhours": 3
+  },
+  {
+    "code": "BAIN062-13",
+    "name": "CALCULO EN VARIAS VARIABLES",
+    "weekhours": 3
+  },
+  {
+    "code": "BAIN063-14",
+    "name": "COMUNICACIÓN EN ESPAÑOL",
+    "weekhours": 3
+  },
+  {
+    "code": "BAIN064-13",
+    "name": "INGLES COMUNICACIONAL INTERMEDIO-AVANZADO",
+    "weekhours": 3
+  },
+  {
+    "code": "BAIN065-14",
+    "name": "ÁLGEBRA PARA INGENIERÍA",
+    "weekhours": 3
+  },
+  {
+    "code": "BAIN066-13",
+    "name": "ECUACIONES DIFERENCIALES",
+    "weekhours": 3
+  },
+  {
+    "code": "BAIN067-14",
+    "name": "GEOMETRÍA PARA INGENIERÍA",
+    "weekhours": 3
+  },
+  {
+    "code": "BAIN068-14",
+    "name": "ALGEBRA E INTRODUCCION AL CALCULO",
+    "weekhours": 3
+  },
+  {
+    "code": "BAIN069-14",
+    "name": "QUÍMICA PARA INGENIERÍA",
+    "weekhours": 3
+  },
+  {
+    "code": "BAIN071-14",
+    "name": "COMUNICACIÓN IDIOMA ESPAÑOL",
+    "weekhours": 3
+  },
+  {
+    "code": "BAIN072-14",
+    "name": "COMUNICACIÓN PROFESIONAL",
+    "weekhours": 3
+  },
+  {
+    "code": "BAIN073-14",
+    "name": "ÁLGEBRA LINEAL PARA INGENIERÍA",
+    "weekhours": 3
+  },
+  {
+    "code": "BAIN074-14",
+    "name": "INTRODUCCION A LA COMUNICACIÓN EN INGLES",
+    "weekhours": 3
+  },
+  {
+    "code": "BAIN075-14",
+    "name": "CÁLCULO EN UNA VARIABLE",
+    "weekhours": 3
+  },
+  {
+    "code": "BAIN076-14",
+    "name": "ALGEBRA LINEAL",
+    "weekhours": 3
+  },
+  {
+    "code": "BAIN077-14",
+    "name": "FÍSICA: MECÁNICA",
+    "weekhours": 3
+  },
+  {
+    "code": "BAIN078-14",
+    "name": "CALCULO EN IR",
+    "weekhours": 3
+  },
+  {
+    "code": "BAIN079-14",
+    "name": "COMUNICACIÓN IDIOMA INGLÉS",
+    "weekhours": 3
+  },
+  {
+    "code": "BAIN080-13",
+    "name": "ESTADISTICA Y PROBABILIDADES",
+    "weekhours": 3
+  },
+  {
+    "code": "BAIN081-14",
+    "name": "ECUACIONES DIFERENCIALES PARA INGENIERÍA",
+    "weekhours": 3
+  },
+  {
+    "code": "BAIN082-14",
+    "name": "QUIMICA DE PROCESOS",
+    "weekhours": 3
+  },
+  {
+    "code": "BAIN083-14",
+    "name": "CÁLCULO EN VARIAS VARIABLES",
+    "weekhours": 3
+  },
+  {
+    "code": "BAIN084-14",
+    "name": "INGLES COMUNICACIONAL BÁSICO",
+    "weekhours": 3
+  },
+  {
+    "code": "BAIN085-14",
+    "name": "FÍSICA: ONDAS Y ELECTROMAGNETISMO",
+    "weekhours": 3
+  },
+  {
+    "code": "BAIN086-14",
+    "name": "CALCULO EN VARIAS VARIABLES",
+    "weekhours": 3
+  },
+  {
+    "code": "BAIN087-14",
+    "name": "MÉTODOS NUMÉRICOS PARA INGENIERÍA",
+    "weekhours": 3
+  },
+  {
+    "code": "BAIN088-14",
+    "name": "FISICA MECANICA I",
+    "weekhours": 3
+  },
+  {
+    "code": "BAIN089-14",
+    "name": "FÍSICA: FLUIDOS Y TERMODINÁMICA",
+    "weekhours": 3
+  },
+  {
+    "code": "BAIN090-13",
+    "name": "INFERENCIA ESTADISTICA",
+    "weekhours": 3
+  },
+  {
+    "code": "BAIN091-14",
+    "name": "ESTADÍSTICA Y PROBABILIDADES PARA INGENIERÍA",
+    "weekhours": 3
+  },
+  {
+    "code": "BAIN092-14",
+    "name": "INGLES COMUNICACIONAL INTERMEDIO-AVANZADO",
+    "weekhours": 3
+  },
+  {
+    "code": "BAIN095-14",
+    "name": "ECUACIONES DIFERENCIALES",
+    "weekhours": 3
+  },
+  {
+    "code": "BAIN099-13",
+    "name": "FISICA MECANICA I",
+    "weekhours": 3
+  },
+  {
+    "code": "BAIN100-14",
+    "name": "FISICA MECÁNICA II",
+    "weekhours": 3
+  },
+  {
+    "code": "BAIN140-17",
+    "name": "INGLÉS INSTRUMENTAL",
+    "weekhours": 3
+  },
+  {
+    "code": "BAIN150-17",
+    "name": "INGLÉS FUNCIONAL",
+    "weekhours": 3
+  },
+  {
+    "code": "BAIN154-13",
+    "name": "FISICA MECÁNICA II",
+    "weekhours": 3
+  }
+]
