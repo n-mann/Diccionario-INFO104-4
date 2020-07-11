@@ -3,7 +3,7 @@ import Link from "next/link";
 const Index = () => {
   return (
     <div>
-      <h1>H1</h1>
+      <h1>Diccionario</h1>
       <p>
         <b>Lorem ipsum dolor sit amet</b>, consectetur adipiscing elit. Maecenas
         placerat massa nec sapien aliquam porttitor. Morbi interdum mauris sed
