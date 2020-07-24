@@ -10,10 +10,11 @@ export const globalStyles = (
       body {
         padding: 1rem 1rem;
         margin: 0;
-        background: papayawhip;
+        background: #e6ffcc;
         min-height: 100%;
         font-family: "Lato", sans-serif;
         font-size: 24px;
+        align-content: center;
       }
 
       button {
