@@ -1,5 +1,5 @@
 import { useState } from "react";
-import data from "../data.json";
+import data from "../hispadic1207.json";
 
 const Respuesta = () => {
   return <div>respuesta</div>;
@@ -23,4 +23,4 @@ const Main = () => {
   );
 };
 
-export default main;
+export default Main;
