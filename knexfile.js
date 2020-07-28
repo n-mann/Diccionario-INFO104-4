@@ -1,6 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const dotenv = require("dotenv");
+const { noop } = require("lodash");
 
 if (process.env.NODE_ENV === "development") {
   createEnvFileIfNotExists();
@@ -61,7 +62,7 @@ DB_HOST=localhost
 DB_USER=root
 DB_PASSWORD=
 DB_PORT=3306
-DB_DATABASE=ores_react
+DB_DATABASE=diccionario
     `.trim(),
       {
         encoding: "utf-8",

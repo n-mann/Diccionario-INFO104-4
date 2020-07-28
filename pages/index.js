@@ -2,18 +2,17 @@ import { css } from "@emotion/react";
 import { useState } from "react";
 import data from "../hispadic1207.json";
 
-const Respuesta = () => {
-  return <div>respuesta</div>;
+const Resultado = () => {
+  return <div>Lista con los resultados</div>;
 };
 
 const Main = () => {
-  const [texto, setTexto] = useState(" 青空");
+  const [texto, setTexto] = useState("青空");
   return (
     <>
       <div
         css={css`
           text-align: center;
-          /*background-color: #000033;*/
           background-image: linear-gradient(
             180deg,
             rgba(0, 0, 51, 1) 2%,

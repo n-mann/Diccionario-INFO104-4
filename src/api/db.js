@@ -5,7 +5,7 @@ export const db = knex(knexfile[process.env.NODE_ENV]);
 
 // Cambiar "remake" a "true" para borrar las tablas y crearlas denuevo.
 // Util cuando se hacen modificaciones en las tablas.
-const remake = false;
+const remake = true;
 if (remake && process.env.NODE_ENV === "development") {
   db.migrate
     .down()
