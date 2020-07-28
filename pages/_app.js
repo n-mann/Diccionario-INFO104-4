@@ -8,13 +8,13 @@ export const globalStyles = (
 
       html,
       body {
-        padding: 1rem 1rem;
+        /*padding: 1rem 1rem;*/
         margin: 0;
-        background: #e6ffcc;
+        background: #f4ffff;
         min-height: 100%;
+        height: 100%;
         font-family: "Lato", sans-serif;
         font-size: 24px;
-        align-content: center;
       }
 
       button {
@@ -24,6 +24,10 @@ export const globalStyles = (
           cursor: not-allowed;
         }
       }
+      /*#__next {
+        display: grid;
+        height: 100%;
+      }*/
     `}
   />
 );

@@ -6,50 +6,69 @@ const Respuesta = () => {
   return <div>respuesta</div>;
 };
 
-const AyNose = () => {
+const Main = () => {
+  const [texto, setTexto] = useState(" 青空");
   return (
-    <body>
-      <h1
+    <>
+      <div
         css={css`
           text-align: center;
-          background-color: #000033;
+          /*background-color: #000033;*/
+          background-image: linear-gradient(
+            180deg,
+            rgba(0, 0, 51, 1) 2%,
+            rgba(22, 237, 237, 1) 100%
+          );
           color: #fff;
+          margin: 0;
+          font-size: 2.3em;
+          font-weight: bold;
         `}
       >
-        プヅ　辞書
-      </h1>
+        Diccionario 辞書
+      </div>
       <img
         css={css`
-          width: 120px;
-          transition: box-shadow 1s;
-          display: block;
+          width: 130px;
           margin: 0px auto;
-          :hover {
-            box-shadow: 0px 0px 5px 5px #fff;
-          }
+          display: flex;
+          align-content: center;
         `}
         alt="anime-girl"
         src="/test.png"
       />
-    </body>
+      <div
+        css={css`
+          display: flex;
+          flex-direction: row;
+          margin: 20px;
+          justify-content: center;
+          gap: 1%;
+        `}
+      >
+        <input
+          css={css`
+            border: 1px solid #4d4d4d;
+            font-size: 1.2em;
+            color: #1a1a1a;
+          `}
+          placeholder="Ingrese su busqueda"
+          value={texto}
+          onChange={(e) => {}}
+        />
+        <button
+          css={css`
+            font-size: 1em;
+            background-color: white;
+            color: #4d4d4d;
+            border: 1px solid #4d4d4d;
+          `}
+        >
+          Buscar
+        </button>
+      </div>
+    </>
   );
 };
-const Main = () => {
-  const [texto, setTexto] = useState("hola");
-  return (
-    <div>
-      <input
-        placeholder="Ingrese su busqueda"
-        value={texto}
-        onChange={(e) => {}}
-      />
 
-      {JSON.stringify(data)}
-      <button>Buscar</button>
-
-      <Respuesta />
-    </div>
-  );
-};
-
-export default AyNose;
+export default Main;
