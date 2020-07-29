@@ -70,4 +70,6 @@ const Main = () => {
   );
 };
 
+const c = "";
+
 export default Main;
