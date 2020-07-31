@@ -24,17 +24,20 @@ const Resultado = (props) => {
           <li
             css={css`
               height: 70px;
+              /*line-height: 70px;*/
               width: 80%;
-              line-height: 70px;
+              flex-wrap: nowrap;
               display: flex;
               flex-direction: row;
               list-style-type: none;
+              align-items: center;
               justify-content: left;
               border: solid 1px;
             `}
           >
             <span
               css={css`
+                font-size: 0.9em;
                 text-indent: 10px;
                 color: black;
               `}
@@ -44,7 +47,7 @@ const Resultado = (props) => {
             <span
               css={css`
                 text-indent: 10px;
-                font-size: 0.7em;
+                font-size: 0.6em;
                 color: #4d4d4d;
               `}
             >
@@ -52,6 +55,7 @@ const Resultado = (props) => {
             </span>
             <span
               css={css`
+                font-size: 0.9em;
                 text-indent: 10px;
                 color: #333333;
               `}
@@ -60,7 +64,8 @@ const Resultado = (props) => {
             </span>
             <div
               css={css`
-                margin: auto;
+                margin-top: auto;
+                margin-left: auto;
                 align-self: right;
                 display: flex;
                 flex-direction: column;
@@ -69,9 +74,10 @@ const Resultado = (props) => {
             >
               <button
                 css={css`
+                  width: 60px;
                   height: 30px;
                   border: none;
-                  color: #333333;
+                  color: #151515;
                 `}
               >
                 + Info
@@ -108,6 +114,7 @@ const Query = (props) => {
     >
       <input
         css={css`
+          text-indent: 10px;
           border: 1px solid #4d4d4d;
           font-size: 1.2em;
           color: #1a1a1a;
