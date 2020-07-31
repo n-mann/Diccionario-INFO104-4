@@ -1,6 +1,7 @@
 import { css } from "@emotion/react";
 import { useState } from "react";
 import data from "../hispadic1207.json";
+import axios from "axios";
 
 const Resultado = (props) => {
   return (
@@ -92,12 +93,15 @@ const Resultado = (props) => {
 
 const pedirInformacion = (input, setResultados) => {
   const resultados = [];
-  data.forEach((entrada) => {
-    if (entrada.japanese.includes(input) || entrada.spanish.includes(input))
-      resultados.push(entrada);
+  //data.forEach((entrada) => {
+  //if (entrada.japanese.includes(input) || entrada.spanish.includes(input))
+  // resultados.push(entrada);
+  //});
+  axios.post("/api/search", { input }).then((response) => {
+    setResultados(response.data);
   });
 
-  setResultados(resultados);
+  //setResultados(resultados);
 };
 
 const Query = (props) => {
@@ -112,30 +116,38 @@ const Query = (props) => {
         gap: 1%;
       `}
     >
-      <input
-        css={css`
-          text-indent: 10px;
-          border: 1px solid #4d4d4d;
-          font-size: 1.2em;
-          color: #1a1a1a;
-        `}
-        placeholder="Ingrese su busqueda"
-        value={props.texto}
-        onChange={(e) => {
-          props.setTexto(e.target.value);
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
         }}
-      />
-      <button
-        css={css`
-          font-size: 1em;
-          background-color: white;
-          color: #4d4d4d;
-          border: 1px solid #4d4d4d;
-        `}
-        onClick={() => pedirInformacion(props.texto, props.setResultados)}
       >
-        Buscar
-      </button>
+        <input
+          css={css`
+            text-indent: 10px;
+            border: 1px solid #4d4d4d;
+            font-size: 1.2em;
+            color: #1a1a1a;
+          `}
+          placeholder="Ingrese su busqueda"
+          value={props.texto}
+          onChange={(e) => {
+            props.setTexto(e.target.value);
+          }}
+        />
+        <button
+          css={css`
+            font-size: 1em;
+            background-color: white;
+            color: #4d4d4d;
+            border: 1px solid #4d4d4d;
+          `}
+          onClick={() =>
+            pedirInformacion(props.texto.toLowerCase(), props.setResultados)
+          }
+        >
+          Buscar
+        </button>
+      </form>
     </div>
   );
 };
