@@ -14,6 +14,7 @@ export default async (req, res) => {
     .where("japanese", "like", word)
     .orWhere("spanish", "like", word)
     .orWhere("reading", "like", word);
-
+  const c = await db("kanjidic").select("*").where("kanji", "like", "垕");
+  console.log(c);
   res.send(data);
 };
