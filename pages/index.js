@@ -106,7 +106,7 @@ const pedirInformacion = (input, setResultados) => {
 
 const Query = (props) => {
   return (
-    <div
+    <form
       css={css`
         height: 40px;
         display: flex;
@@ -115,40 +115,37 @@ const Query = (props) => {
         justify-content: center;
         gap: 1%;
       `}
+      onSubmit={(e) => {
+        e.preventDefault();
+      }}
     >
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
+      <input
+        css={css`
+          text-indent: 10px;
+          border: 1px solid #4d4d4d;
+          font-size: 1.2em;
+          color: #1a1a1a;
+        `}
+        placeholder="Ingrese su busqueda"
+        value={props.texto}
+        onChange={(e) => {
+          props.setTexto(e.target.value);
         }}
+      />
+      <button
+        css={css`
+          font-size: 1em;
+          background-color: white;
+          color: #4d4d4d;
+          border: 1px solid #4d4d4d;
+        `}
+        onClick={() =>
+          pedirInformacion(props.texto.toLowerCase(), props.setResultados)
+        }
       >
-        <input
-          css={css`
-            text-indent: 10px;
-            border: 1px solid #4d4d4d;
-            font-size: 1.2em;
-            color: #1a1a1a;
-          `}
-          placeholder="Ingrese su busqueda"
-          value={props.texto}
-          onChange={(e) => {
-            props.setTexto(e.target.value);
-          }}
-        />
-        <button
-          css={css`
-            font-size: 1em;
-            background-color: white;
-            color: #4d4d4d;
-            border: 1px solid #4d4d4d;
-          `}
-          onClick={() =>
-            pedirInformacion(props.texto.toLowerCase(), props.setResultados)
-          }
-        >
-          Buscar
-        </button>
-      </form>
-    </div>
+        Buscar
+      </button>
+    </form>
   );
 };
 

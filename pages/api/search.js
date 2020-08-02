@@ -8,9 +8,12 @@ import { NextApiResponse, NextApiRequest } from "next";
  */
 export default async (req, res) => {
   console.log(req.body.input);
+  const word = "%" + req.body.input + "%";
   const data = await db("hispadic")
     .select("*")
-    .where({ japanese: req.body.input });
+    .where("japanese", "like", word)
+    .orWhere("spanish", "like", word)
+    .orWhere("reading", "like", word);
 
   res.send(data);
 };
