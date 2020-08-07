@@ -9,12 +9,13 @@ import { NextApiResponse, NextApiRequest } from "next";
 export default async (req, res) => {
   console.log(req.body.input);
   const word = "%" + req.body.input + "%";
-  const data = await db("hispadic")
-    .select("*")
-    .where("japanese", "like", word)
-    .orWhere("spanish", "like", word)
-    .orWhere("reading", "like", word);
-  const c = await db("kanjidic").select("*").where("kanji", "like", "星");
-  console.log(c);
-  res.send(data);
+  const [dataHispadic, dataKanji] = await Promise.all([
+    db("hispadic")
+      .select("*")
+      .where("japanese", "like", word)
+      .orWhere("spanish", "like", word)
+      .orWhere("reading", "like", word),
+    db("kanjidic").select("*").whereIn("kanji", req.body.input.split("")),
+  ]);
+  res.send([...dataHispadic, ...dataKanji]);
 };

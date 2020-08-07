@@ -79,7 +79,7 @@ const Resultado = (props) => {
                 color: #4d4d4d;
               `}
             >
-              ({resultado.reading})
+              ({resultado.reading || resultado.kanji})
             </span>
             <span
               css={css`
