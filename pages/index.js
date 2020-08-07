@@ -1,7 +1,34 @@
 import { css } from "@emotion/react";
 import { useState } from "react";
-import data from "../hispadic1207.json";
+//import data from "../hispadic1207.json";
 import axios from "axios";
+
+const MasInfo = (props) => {
+  //TODO
+  //añadir que reciba la info de cada Kanji
+  //cree una lista con el numero de kanji de la palabra
+  //muestre la informacion de cada kanji
+  return "Contiene la info de cada kanji de la palabra";
+};
+
+const BotonMasInfo = (props) => {
+  //TODO
+  //asociarle una palabra en japonés
+  //añadir que al hacer click pida la info de cada kanji a la tabla kanjidic
+  //añadir que al hacer click muestre/oculte MasInfo
+  return (
+    <button
+      css={css`
+        width: 60px;
+        height: 30px;
+        border: none;
+        color: #151515;
+      `}
+    >
+      + Info
+    </button>
+  );
+};
 
 const Resultado = (props) => {
   return (
@@ -73,16 +100,7 @@ const Resultado = (props) => {
                 align-items: right;
               `}
             >
-              <button
-                css={css`
-                  width: 60px;
-                  height: 30px;
-                  border: none;
-                  color: #151515;
-                `}
-              >
-                + Info
-              </button>
+              <BotonMasInfo />
             </div>
           </li>
         ))}
@@ -150,7 +168,7 @@ const Query = (props) => {
 };
 
 const Main = () => {
-  const [texto, setTexto] = useState("青空");
+  const [texto, setTexto] = useState("星");
   const [resultados, setResultados] = useState(null);
   return (
     <>
