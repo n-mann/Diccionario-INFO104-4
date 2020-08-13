@@ -20,10 +20,15 @@ export default async (req, res) => {
     dataHispadic.map(async resultado => {
       return {
         resultado: resultado,
-        masInfo: await Promise.resolve(
-          db("kanjidic")
-            .select("*")
-            .whereIn("kanji", Array.from(resultado.japanese)))
+        masInfo: (resultado.japanese == resultado.reading
+        ? []
+        : await Promise.resolve(
+            db("kanjidic")
+              .select("*")
+              .whereIn("kanji", Array.from(resultado.japanese))
+              .limit(Array.from(resultado.japanese).length)
+          )
+        )
       }
     })
   );
