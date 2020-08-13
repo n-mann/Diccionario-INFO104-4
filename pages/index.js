@@ -8,27 +8,132 @@ const MasInfo = (props) => {
   //añadir que reciba la info de cada Kanji
   //cree una lista con el numero de kanji de la palabra
   //muestre la informacion de cada kanji
-  return "Contiene la info de cada kanji de la palabra";
-};
-
-const BotonMasInfo = (props) => {
-  //TODO
-  //asociarle una palabra en japonés
-  //añadir que al hacer click pida la info de cada kanji a la tabla kanjidic
-  //añadir que al hacer click muestre/oculte MasInfo
   return (
-    <button
+    <ul
       css={css`
-        width: 60px;
-        height: 30px;
-        border: none;
-        color: #151515;
+        margin: 0;
+        left-padding: 20px;
       `}
     >
-      + Info
-    </button>
-  );
+      {props.masInfo.map(kanji =>
+          <li>
+            {kanji.kanji}:
+            <span
+              css={css`
+                font-size: 16px;
+              `}
+            >
+              "{kanji.spanish}" {kanji.strokes} trazos. {kanji.jlpt > 0 ? "JLTP N" + kanji.jlpt + "." : ""} Kunyomi: {kanji.kun}. Onyomi: {kanji.on}.
+            </span>
+          </li>
+      )}
+    </ul>
+  )
 };
+
+const ResultadoFila = (props) => {
+  const [masInfo, setMasInfo] = useState(false);
+  const datos = props.resultado.resultado;
+  return (
+    <>
+      <tr
+        css={css`
+          height: 30px;
+        `}
+      >
+        <td>
+          <span
+            css={css`
+              font-size: 0.9em;
+              text-indent: 10px;
+              color: black;
+              margin-right: 10px;
+            `}
+          >
+            {datos.japanese}
+          </span>
+          {props.resultado.masInfo.length > 0
+          ?
+            <span
+              css={css`
+                text-indent: 10px;
+                font-size: 0.6em;
+                color: #4d4d4d;
+                margin-right: 30px;
+              `}
+            >
+              ({datos.reading})
+            </span>
+          :
+            ""
+          }
+          <span
+            css={css`
+              font-size: 0.9em;
+              text-indent: 10px;
+              color: #333333;
+            `}
+          >
+            {datos.spanish}
+          </span>
+        </td>
+        <td
+          css={css`
+            width: 60px;
+          `}
+        >
+          {props.resultado.masInfo.length > 0
+          ?
+            <button
+              css={css`
+                width: 60px;
+                height: 30px;
+                border: none;
+                color: #151515;
+              `}
+              onClick = {() => setMasInfo(!masInfo)}
+            >
+              {masInfo ? "-" : "+"} Info
+            </button>
+          :
+            ""
+          }
+        </td>
+      </tr>
+      <tr><td colspan="2"
+        css={css`
+          border-bottom: 1px solid black;
+        `}
+      >
+        {props.resultado.masInfo.length > 0
+        ?
+          <div
+            css={masInfo
+              ? 
+                css`
+                  overflow-y: scroll;
+                  transition: max-height 0.5s;
+                  transition-timing-function: ease-in-out;
+                  max-height: 150px;
+                `
+              :
+                css`
+                  overflow: hidden;
+                  transition: max-height 0.5s;
+                  transition-timing-function: ease-in-out;
+                  max-height: 0;
+                `
+            }
+          >
+            <MasInfo masInfo={props.resultado.masInfo} /> {/* best nombres. such readability */}
+          </div>
+        :
+          ""
+        }
+      </td></tr>
+    </>
+  );
+}
 
 const Resultado = (props) => {
   return (
@@ -38,73 +143,29 @@ const Resultado = (props) => {
           text-indent: 30px;
         `}
       >
-        Resultados de {props.input}
+        Resultados de "{props.datos.input}":
       </div>
-      <ul
-        css={css`
-          display: flex;
-          flex-direction: column;
-          list-style-type: none;
-          align-items: center;
-        `}
-      >
-        {props.datos.map((resultado) => (
-          <li
+      {props.datos.datos.length > 0
+        ?
+          <table
             css={css`
-              height: 70px;
-              /*line-height: 70px;*/
               width: 80%;
-              flex-wrap: nowrap;
-              display: flex;
-              flex-direction: row;
-              list-style-type: none;
-              align-items: center;
-              justify-content: left;
-              border: solid 1px;
+              left: 10%;
+              border: 1px solid black;
+              position: absolute;
+              margin-top: 20px;
+              margin-bottom: 50px;
             `}
           >
-            <span
-              css={css`
-                font-size: 0.9em;
-                text-indent: 10px;
-                color: black;
-              `}
-            >
-              {resultado.japanese}
-            </span>
-            <span
-              css={css`
-                text-indent: 10px;
-                font-size: 0.6em;
-                color: #4d4d4d;
-              `}
-            >
-              ({resultado.reading || resultado.kanji})
-            </span>
-            <span
-              css={css`
-                font-size: 0.9em;
-                text-indent: 10px;
-                color: #333333;
-              `}
-            >
-              {resultado.spanish}
-            </span>
-            <div
-              css={css`
-                margin-top: auto;
-                margin-left: auto;
-                align-self: right;
-                display: flex;
-                flex-direction: column;
-                align-items: right;
-              `}
-            >
-              <BotonMasInfo />
-            </div>
-          </li>
-        ))}
-      </ul>
+            {props.datos.datos.map((resultado) =>
+              <ResultadoFila
+                resultado = {resultado}
+                masInfo = {resultado.masInfo}
+              />
+            )}
+          </table>
+        : "No se encontraron resultados."
+      }
     </>
   );
 };
@@ -206,8 +267,6 @@ const Main = () => {
       {resultados ? (
         <Resultado
           datos={resultados}
-          setResultados={setResultados}
-          input={texto}
         />
       ) : null}
     </>

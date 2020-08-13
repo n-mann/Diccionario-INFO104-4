@@ -7,15 +7,31 @@ import { NextApiResponse, NextApiRequest } from "next";
  * @param {NextApiResponse} res
  */
 export default async (req, res) => {
-  console.log(req.body.input);
   const word = "%" + req.body.input + "%";
-  const [dataHispadic, dataKanji] = await Promise.all([
+  const dataHispadic = await Promise.resolve(
     db("hispadic")
       .select("*")
       .where("japanese", "like", word)
       .orWhere("spanish", "like", word)
       .orWhere("reading", "like", word),
-    db("kanjidic").select("*").whereIn("kanji", req.body.input.split("")),
-  ]);
-  res.send([...dataHispadic, ...dataKanji]);
+  );
+
+  const data = await Promise.all(
+    dataHispadic.map(async resultado => {
+      return {
+        resultado: resultado,
+        masInfo: await Promise.resolve(
+          db("kanjidic")
+            .select("*")
+            .whereIn("kanji", Array.from(resultado.japanese)))
+      }
+    })
+  );
+
+  console.log(data);
+
+  res.send({
+    datos: data,
+    input: req.body.input,
+  });
 };
