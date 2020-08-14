@@ -177,20 +177,22 @@ const Resultado = (props) => {
   );
 };
 
-const pedirInformacion = (input, setResultados) => {
-  const resultados = [];
-  //data.forEach((entrada) => {
-  //if (entrada.japanese.includes(input) || entrada.spanish.includes(input))
-  // resultados.push(entrada);
-  //});
-  axios.post("/api/search", { input }).then((response) => {
-    setResultados(response.data);
-  });
-
-  //setResultados(resultados);
-};
-
 const Query = (props) => {
+  const [loading, setLoading] = useState(false);
+  const pedirInformacion = (input, setResultados) => {
+    const resultados = [];
+    //data.forEach((entrada) => {
+    //if (entrada.japanese.includes(input) || entrada.spanish.includes(input))
+    // resultados.push(entrada);
+    //});
+    setLoading(true);
+    axios.post("/api/search", { input }).then((response) => {
+      setResultados(response.data);
+      setLoading(false);
+    });
+
+    //setResultados(resultados);
+  };
   return (
     <form
       css={css`
@@ -231,6 +233,7 @@ const Query = (props) => {
       >
         Buscar
       </button>
+      {loading && <span>cargando...</span>}
     </form>
   );
 };
