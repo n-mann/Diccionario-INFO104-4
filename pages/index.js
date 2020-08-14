@@ -1,34 +1,36 @@
 import { css } from "@emotion/react";
 import { useState } from "react";
-//import data from "../hispadic1207.json";
 import axios from "axios";
 
 const MasInfo = (props) => {
-  //TODO
-  //añadir que reciba la info de cada Kanji
-  //cree una lista con el numero de kanji de la palabra
-  //muestre la informacion de cada kanji
   return (
     <ul
       css={css`
+        border-top: 1px solid #77bafd;
+        list-style-type: none;
         margin: 0;
-        left-padding: 20px;
       `}
     >
-      {props.masInfo.map(kanji =>
-          <li>
-            {kanji.kanji}:
-            <span
-              css={css`
-                font-size: 16px;
-              `}
-            >
-              "{kanji.spanish}" {kanji.strokes} trazos. {kanji.jlpt > 0 ? "JLTP N" + kanji.jlpt + "." : ""} Kunyomi: {kanji.kun}. Onyomi: {kanji.on}.
-            </span>
-          </li>
-      )}
+      {props.masInfo.map((kanji) => (
+        <li css={css``}>
+          <span css={css``}>{kanji.kanji}</span>
+          <span
+            css={css`
+              margin-left: 10px;
+              color: #222;
+              font-size: 15px;
+            `}
+          >
+            {kanji.spanish} {kanji.strokes} trazos.{" "}
+            {kanji.jlpt > 0 ? " JLTP N" + kanji.jlpt + ". " : ""}
+            {kanji.kun != "-1" ? "Kunyomi: " + kanji.kun + ". " : ""}
+            {kanji.on != "-1" ? "Onyomi: " + kanji.on + ". " : ""}
+            {kanji.nanori != "-1" ? "Nanori: " + kanji.nanori + ". " : ""}
+          </span>
+        </li>
+      ))}
     </ul>
-  )
+  );
 };
 
 const ResultadoFila = (props) => {
@@ -47,13 +49,13 @@ const ResultadoFila = (props) => {
               font-size: 0.9em;
               text-indent: 10px;
               color: black;
+              margin-left: 10px;
               margin-right: 10px;
             `}
           >
             {datos.japanese}
           </span>
-          {props.resultado.masInfo.length > 0
-          ?
+          {props.resultado.masInfo.length > 0 ? (
             <span
               css={css`
                 text-indent: 10px;
@@ -64,9 +66,9 @@ const ResultadoFila = (props) => {
             >
               ({datos.reading})
             </span>
-          :
+          ) : (
             ""
-          }
+          )}
           <span
             css={css`
               font-size: 0.9em;
@@ -82,8 +84,7 @@ const ResultadoFila = (props) => {
             width: 60px;
           `}
         >
-          {props.resultado.masInfo.length > 0
-          ?
+          {props.resultado.masInfo.length > 0 ? (
             <button
               css={css`
                 width: 60px;
@@ -91,49 +92,51 @@ const ResultadoFila = (props) => {
                 border: none;
                 color: #151515;
               `}
-              onClick = {() => setMasInfo(!masInfo)}
+              onClick={() => setMasInfo(!masInfo)}
             >
               {masInfo ? "-" : "+"} Info
             </button>
-          :
+          ) : (
             ""
-          }
+          )}
         </td>
       </tr>
-      <tr><td colspan="2"
-        css={css`
-          border-bottom: 1px solid black;
-        `}
-      >
-        {props.resultado.masInfo.length > 0
-        ?
-          <div
-            css={masInfo
-              ? 
-                css`
-                  overflow-y: scroll;
-                  transition: max-height 0.5s;
-                  transition-timing-function: ease-in-out;
-                  max-height: 150px;
-                `
-              :
-                css`
-                  overflow: hidden;
-                  transition: max-height 0.5s;
-                  transition-timing-function: ease-in-out;
-                  max-height: 0;
-                `
-            }
-          >
-            <MasInfo masInfo={props.resultado.masInfo} /> {/* best nombres. such readability */}
-          </div>
-        :
-          ""
-        }
-      </td></tr>
+      <tr>
+        <td
+          colspan="2"
+          css={css`
+            border-bottom: 1px solid black;
+          `}
+        >
+          {props.resultado.masInfo.length > 0 ? (
+            <div
+              css={
+                masInfo
+                  ? css`
+                      overflow-y: scroll;
+                      transition: max-height 0.5s;
+                      transition-timing-function: ease-in-out;
+                      max-height: 150px;
+                    `
+                  : css`
+                      overflow: hidden;
+                      transition: max-height 0.5s;
+                      transition-timing-function: ease-in-out;
+                      max-height: 0;
+                    `
+              }
+            >
+              <MasInfo masInfo={props.resultado.masInfo} />{" "}
+              {/* best nombres. such readability */}
+            </div>
+          ) : (
+            ""
+          )}
+        </td>
+      </tr>
     </>
   );
-}
+};
 
 const Resultado = (props) => {
   return (
@@ -145,27 +148,31 @@ const Resultado = (props) => {
       >
         Resultados de "{props.datos.input}":
       </div>
-      {props.datos.datos.length > 0
-        ?
-          <table
-            css={css`
-              width: 80%;
-              left: 10%;
-              border: 1px solid black;
-              position: absolute;
-              margin-top: 20px;
-              margin-bottom: 50px;
-            `}
-          >
-            {props.datos.datos.map((resultado) =>
-              <ResultadoFila
-                resultado = {resultado}
-                masInfo = {resultado.masInfo}
-              />
-            )}
-          </table>
-        : "No se encontraron resultados."
-      }
+      {props.datos.datos.length > 0 ? (
+        <table
+          css={css`
+            width: 80%;
+            left: 10%;
+            border: 1px solid black;
+            position: absolute;
+            margin-top: 20px;
+            margin-bottom: 50px;
+          `}
+        >
+          {props.datos.datos.map((resultado) => (
+            <ResultadoFila resultado={resultado} masInfo={resultado.masInfo} />
+          ))}
+        </table>
+      ) : (
+        <div
+          css={css`
+            margin: auto;
+            text-align: center;
+          `}
+        >
+          No se encontraron resultados.
+        </div>
+      )}
     </>
   );
 };
@@ -237,8 +244,12 @@ const Main = () => {
         css={css`
           text-align: center;
           height: 130px;
+          margin: auto auto;
           line-height: 130px;
+          display: flex;
           align-items: center;
+          align-content: center;
+          justify-content: center;
           background-image: linear-gradient(
             180deg,
             rgba(0, 0, 51, 1) 2%,
@@ -253,22 +264,14 @@ const Main = () => {
         <img
           css={css`
             width: 90px;
-            margin: auto auto;
-            display: inline-flex;
-            align-content: center;
-            justify-content: center;
           `}
           alt="anime-girl"
           src="/test.png"
         />
-        Diccionario 辞書
+        <span>Diccionario 辞書</span>
       </div>
       <Query texto={texto} setTexto={setTexto} setResultados={setResultados} />
-      {resultados ? (
-        <Resultado
-          datos={resultados}
-        />
-      ) : null}
+      {resultados ? <Resultado datos={resultados} /> : null}
     </>
   );
 };
