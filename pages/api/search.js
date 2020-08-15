@@ -1,6 +1,11 @@
 import { db } from "../../src/api/db";
 import { NextApiResponse, NextApiRequest } from "next";
 
+// 々 es omitido
+function esKanji(c) {
+    return (c != "々") && (c >= "\u4e00") && (c <= "\u4dbf");
+}
+
 /**
  * @export
  * @param {NextApiRequest} req
@@ -14,23 +19,29 @@ export default async (req, res) => {
     .orWhere("spanish", "like", word)
     .orWhere("reading", "like", word);
 
-  const data = await Promise.all(
-    dataHispadic.map(async (resultado) => {
-      return {
-        resultado: resultado,
-        masInfo:
-          resultado.japanese == resultado.reading
-            ? []
-            : await db("kanjidic")
-                .select("*")
-                .whereIn("kanji", Array.from(resultado.japanese))
-                .limit(Array.from(resultado.japanese).length),
-      };
-    })
-  );
+  const listaKanji = [];
+  dataHispadic.map(resultado => {
+    Array.from(resultado.japanese).map(kanji => {
+      if (!listaKanji.includes(kanji)) listaKanji.push(kanji);
+    });
+  });
+
+  // Alternativa 1
+  const dataKanji = await db("kanjidic")
+    .select("*")
+    .whereIn("kanji", listaKanji)
+    .limit(listaKanji.length)
+
+  const dataKanjidic = {};
+  dataKanji.map(resultado => {
+    dataKanjidic[resultado.kanji] = resultado;
+  });
+
+  console.log("search done");
 
   res.send({
-    datos: data,
+    datos: dataHispadic,
+    masInfo: dataKanjidic,
     input: req.body.input,
   });
 };

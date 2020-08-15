@@ -11,7 +11,7 @@ const MasInfo = (props) => {
         margin: 0;
       `}
     >
-      {props.masInfo.map((kanji) => (
+      {props.masInfo.map(kanji => 
         <li css={css``}>
           <span css={css``}>{kanji.kanji}</span>
           <span
@@ -28,14 +28,20 @@ const MasInfo = (props) => {
             {kanji.nanori != "-1" ? "Nanori: " + kanji.nanori + ". " : ""}
           </span>
         </li>
-      ))}
+      )}
     </ul>
   );
 };
 
 const ResultadoFila = (props) => {
   const [masInfo, setMasInfo] = useState(false);
-  const datos = props.resultado.resultado;
+
+  let infoKanji = Array.from(props.datos.japanese)
+    .map(kanji => {
+      if (props.masInfo.hasOwnProperty(kanji)) return props.masInfo[kanji];
+    })
+    .filter(kanji => kanji);
+
   return (
     <>
       <tr
@@ -53,9 +59,9 @@ const ResultadoFila = (props) => {
               margin-right: 10px;
             `}
           >
-            {datos.japanese}
+            {props.datos.japanese}
           </span>
-          {props.resultado.masInfo.length > 0 ? (
+          {infoKanji.length > 0 ? (
             <span
               css={css`
                 text-indent: 10px;
@@ -64,7 +70,7 @@ const ResultadoFila = (props) => {
                 margin-right: 30px;
               `}
             >
-              ({datos.reading})
+              ({props.datos.reading})
             </span>
           ) : (
             ""
@@ -76,7 +82,7 @@ const ResultadoFila = (props) => {
               color: #333333;
             `}
           >
-            {datos.spanish}
+            {props.datos.spanish}
           </span>
         </td>
         <td
@@ -84,7 +90,7 @@ const ResultadoFila = (props) => {
             width: 60px;
           `}
         >
-          {props.resultado.masInfo.length > 0 ? (
+          {infoKanji.length > 0 ? (
             <button
               css={css`
                 width: 60px;
@@ -108,7 +114,7 @@ const ResultadoFila = (props) => {
             border-bottom: 1px solid black;
           `}
         >
-          {props.resultado.masInfo.length > 0 ? (
+          {infoKanji.length > 0 ? (
             <div
               css={
                 masInfo
@@ -126,7 +132,7 @@ const ResultadoFila = (props) => {
                     `
               }
             >
-              <MasInfo masInfo={props.resultado.masInfo} />{" "}
+              <MasInfo palabra={props.datos.japanese} masInfo={infoKanji} />
               {/* best nombres. such readability */}
             </div>
           ) : (
@@ -146,9 +152,9 @@ const Resultado = (props) => {
           text-indent: 30px;
         `}
       >
-        Resultados de "{props.datos.input}":
+        Resultados de "{props.input}":
       </div>
-      {props.datos.datos.length > 0 ? (
+      {props.datos.length > 0 ? (
         <table
           css={css`
             width: 80%;
@@ -159,9 +165,9 @@ const Resultado = (props) => {
             margin-bottom: 50px;
           `}
         >
-          {props.datos.datos.map((resultado) => (
-            <ResultadoFila resultado={resultado} masInfo={resultado.masInfo} />
-          ))}
+          {props.datos.map((resultado) =>               
+            <ResultadoFila datos={resultado} masInfo={props.masInfo} />
+          )}
         </table>
       ) : (
         <div
@@ -274,7 +280,7 @@ const Main = () => {
         <span>Diccionario 辞書</span>
       </div>
       <Query texto={texto} setTexto={setTexto} setResultados={setResultados} />
-      {resultados ? <Resultado datos={resultados} /> : null}
+      {resultados ? <Resultado input={resultados.input} datos={resultados.datos} masInfo={resultados.masInfo} /> : null}
     </>
   );
 };
