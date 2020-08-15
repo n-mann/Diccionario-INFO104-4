@@ -184,17 +184,15 @@ const Resultado = (props) => {
 };
 
 const Query = (props) => {
-  const [loading, setLoading] = useState(false);
   const pedirInformacion = (input, setResultados) => {
     const resultados = [];
     //data.forEach((entrada) => {
     //if (entrada.japanese.includes(input) || entrada.spanish.includes(input))
     // resultados.push(entrada);
     //});
-    setLoading(true);
+    setResultados("loading");
     axios.post("/api/search", { input }).then((response) => {
       setResultados(response.data);
-      setLoading(false);
     });
 
     //setResultados(resultados);
@@ -239,10 +237,32 @@ const Query = (props) => {
       >
         Buscar
       </button>
-      {loading && <span>cargando...</span>}
     </form>
   );
 };
+
+const Loading = () => {
+  return (
+    <div
+      css={css`
+        width: 100%;
+        text-align: center;
+        position: absolute;
+      `}
+    >
+      <img
+        css={css`
+          position: relative;
+          hight: 40%;
+        `}
+        alt="anime-girl"
+        src="/test.png"
+      />
+      <br/>
+      Cargando...
+    </div>
+  )
+}
 
 const Main = () => {
   const [texto, setTexto] = useState("星");
@@ -270,17 +290,15 @@ const Main = () => {
           font-weight: bold;
         `}
       >
-        <img
-          css={css`
-            width: 90px;
-          `}
-          alt="anime-girl"
-          src="/test.png"
-        />
         <span>Diccionario 辞書</span>
       </div>
       <Query texto={texto} setTexto={setTexto} setResultados={setResultados} />
-      {resultados ? <Resultado input={resultados.input} datos={resultados.datos} masInfo={resultados.masInfo} /> : null}
+      {resultados == "loading"
+      ? <Loading/>
+      : (resultados
+        ? <Resultado input={resultados.input} datos={resultados.datos} masInfo={resultados.masInfo} />
+        : null)
+      }
     </>
   );
 };
