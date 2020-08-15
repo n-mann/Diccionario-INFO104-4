@@ -6,30 +6,74 @@ const MasInfo = (props) => {
   return (
     <ul
       css={css`
-        border-top: 1px solid #77bafd;
         list-style-type: none;
         margin: 0;
       `}
     >
-      {props.masInfo.map(kanji => 
-        <li css={css``}>
-          <span css={css``}>{kanji.kanji}</span>
-          <span
+      {props.masInfo.map((kanji) => (
+        <li
+          css={css`
+            position: relative;
+            top: 0px;
+            left: 0px;
+            height: 80px;
+            width: 99%;
+            border-top: 2px solid greenyellow;
+            padding: 10px;
+          `}
+        >
+          <div
             css={css`
-              margin-left: 10px;
-              color: #222;
-              font-size: 15px;
+              position: absolute;
+              top: 0px;
+              left: 0px;
+              height: 80px;
+              width: 10%;
             `}
           >
-            {kanji.spanish != "-1" ? '"' + kanji.spanish + '" ' : ""}
-            {kanji.strokes} trazos.{" "}
-            {kanji.jlpt > 0 ? " JLTP N" + kanji.jlpt + ". " : ""}
-            {kanji.kun != "-1" ? "Kunyomi: " + kanji.kun + ". " : ""}
-            {kanji.on != "-1" ? "Onyomi: " + kanji.on + ". " : ""}
-            {kanji.nanori != "-1" ? "Nanori: " + kanji.nanori + ". " : ""}
-          </span>
+            {kanji.kanji}
+          </div>
+          <table
+            css={css`
+              table-layout: fixed;
+              font-size: 0.6em;
+              position: absolute;
+              top: 0px;
+              right: 0px;
+              height: 80px;
+              width: 90%;
+            `}
+          >
+            <td
+              css={css`
+                width: 70%;
+                background-color: mintcream;
+              `}
+            >
+              <tr
+                css={css`
+                  font-weight: bold;
+                `}
+              >
+                {kanji.spanish != "-1"
+                  ? kanji.spanish + ". "
+                  : kanji.english != "-1"
+                  ? kanji.english + "."
+                  : "No meaning available"}
+              </tr>
+              <tr>Kunyomi: {kanji.kun != "-1" ? kanji.kun : "-"}</tr>
+              <tr>Onyomi: {kanji.on != "-1" ? kanji.on : "-"}</tr>
+              <tr>Nanori: {kanji.nanori != "-1" ? kanji.nanori : "-"}</tr>
+            </td>
+            <td>
+              <tr>Trazos: {kanji.strokes > 0 ? kanji.strokes : "-"}</tr>
+              <tr>JLTP N{kanji.jlpt > 0 ? kanji.jlpt : " - "}</tr>
+              <tr>Grado: {kanji.grade > 0 ? kanji.grade : "-"}</tr>
+              <tr>Frecuencia: {kanji.frequency > 0 ? kanji.frequency : "-"}</tr>
+            </td>
+          </table>
         </li>
-      )}
+      ))}
     </ul>
   );
 };
@@ -38,10 +82,10 @@ const ResultadoFila = (props) => {
   const [masInfo, setMasInfo] = useState(false);
 
   let infoKanji = Array.from(props.datos.japanese)
-    .map(kanji => {
+    .map((kanji) => {
       if (props.masInfo.hasOwnProperty(kanji)) return props.masInfo[kanji];
     })
-    .filter(kanji => kanji);
+    .filter((kanji) => kanji);
 
   return (
     <>
@@ -166,9 +210,9 @@ const Resultado = (props) => {
             margin-bottom: 50px;
           `}
         >
-          {props.datos.map((resultado) =>               
+          {props.datos.map((resultado) => (
             <ResultadoFila datos={resultado} masInfo={props.masInfo} />
-          )}
+          ))}
         </table>
       ) : (
         <div
@@ -187,16 +231,11 @@ const Resultado = (props) => {
 const Query = (props) => {
   const pedirInformacion = (input, setResultados) => {
     const resultados = [];
-    //data.forEach((entrada) => {
-    //if (entrada.japanese.includes(input) || entrada.spanish.includes(input))
-    // resultados.push(entrada);
-    //});
+
     setResultados("loading");
     axios.post("/api/search", { input }).then((response) => {
       setResultados(response.data);
     });
-
-    //setResultados(resultados);
   };
   return (
     <form
@@ -254,16 +293,16 @@ const Loading = () => {
       <img
         css={css`
           position: relative;
-          hight: 40%;
+          width: 180px;
         `}
         alt="anime-girl"
         src="/test.png"
       />
-      <br/>
+      <br />
       Cargando...
     </div>
-  )
-}
+  );
+};
 
 const Main = () => {
   const [texto, setTexto] = useState("星");
@@ -294,12 +333,15 @@ const Main = () => {
         <span>Diccionario 辞書</span>
       </div>
       <Query texto={texto} setTexto={setTexto} setResultados={setResultados} />
-      {resultados == "loading"
-      ? <Loading/>
-      : (resultados
-        ? <Resultado input={resultados.input} datos={resultados.datos} masInfo={resultados.masInfo} />
-        : null)
-      }
+      {resultados == "loading" ? (
+        <Loading />
+      ) : resultados ? (
+        <Resultado
+          input={resultados.input}
+          datos={resultados.datos}
+          masInfo={resultados.masInfo}
+        />
+      ) : null}
     </>
   );
 };
