@@ -3,7 +3,7 @@ import { NextApiResponse, NextApiRequest } from "next";
 
 // 々 es omitido
 function esKanji(c) {
-    return (c != "々") && (c >= "\u4e00") && (c <= "\u4dbf");
+  return (c != "々") && (c >= "\u4e00") && (c <= "\u9faf");
 }
 
 /**
@@ -17,12 +17,13 @@ export default async (req, res) => {
     .select("*")
     .where("japanese", "like", word)
     .orWhere("spanish", "like", word)
-    .orWhere("reading", "like", word);
+    .orWhere("reading", "like", word)
+    .limit(50);
 
   const listaKanji = [];
   dataHispadic.map(resultado => {
     Array.from(resultado.japanese).map(kanji => {
-      if (!listaKanji.includes(kanji)) listaKanji.push(kanji);
+      if (esKanji(kanji) && !listaKanji.includes(kanji)) listaKanji.push(kanji);
     });
   });
 
@@ -36,8 +37,6 @@ export default async (req, res) => {
   dataKanji.map(resultado => {
     dataKanjidic[resultado.kanji] = resultado;
   });
-
-  console.log("search done");
 
   res.send({
     datos: dataHispadic,

@@ -21,7 +21,8 @@ const MasInfo = (props) => {
               font-size: 15px;
             `}
           >
-            {kanji.spanish} {kanji.strokes} trazos.{" "}
+            {kanji.spanish != "-1" ? '"' + kanji.spanish + '" ' : ""}
+            {kanji.strokes} trazos.{" "}
             {kanji.jlpt > 0 ? " JLTP N" + kanji.jlpt + ". " : ""}
             {kanji.kun != "-1" ? "Kunyomi: " + kanji.kun + ". " : ""}
             {kanji.on != "-1" ? "Onyomi: " + kanji.on + ". " : ""}
