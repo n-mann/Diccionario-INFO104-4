@@ -46,7 +46,7 @@ const MasInfo = (props) => {
           >
             <td
               css={css`
-                width: 70%;
+                width: 65%;
                 background-color: mintcream;
               `}
             >
@@ -65,7 +65,12 @@ const MasInfo = (props) => {
               <tr>Onyomi: {kanji.on != "-1" ? kanji.on : "-"}</tr>
               <tr>Nanori: {kanji.nanori != "-1" ? kanji.nanori : "-"}</tr>
             </td>
-            <td>
+            <td
+              css={css`
+                width: 30%;
+                background-color: mintcream;
+              `}
+            >
               <tr>Trazos: {kanji.strokes > 0 ? kanji.strokes : "-"}</tr>
               <tr>JLTP N{kanji.jlpt > 0 ? kanji.jlpt : " - "}</tr>
               <tr>Grado: {kanji.grade > 0 ? kanji.grade : "-"}</tr>
@@ -91,48 +96,78 @@ const ResultadoFila = (props) => {
     <>
       <tr
         css={css`
-          height: 30px;
+          height: 50px;
         `}
       >
         <td>
-          <span
+          <table
             css={css`
-              font-size: 0.9em;
-              text-indent: 10px;
-              color: black;
-              margin-left: 10px;
-              margin-right: 10px;
+              height: 50px;
+              width: 100%;
+              table-layout: fixed;
             `}
           >
-            {props.datos.japanese}
-          </span>
-          {infoKanji.length > 0 ? (
-            <span
+            <td
               css={css`
-                text-indent: 10px;
-                font-size: 0.6em;
-                color: #4d4d4d;
-                margin-right: 30px;
+                margin-left: 10px;
+                background-color: #5f73fe;
+                width: 30%;
               `}
             >
-              ({props.datos.reading})
-            </span>
-          ) : (
-            ""
-          )}
-          <span
-            css={css`
-              font-size: 0.9em;
-              text-indent: 10px;
-              color: #333333;
-            `}
-          >
-            {props.datos.spanish}
-          </span>
+              <tr
+                css={css`
+                  font-size: 0.8em;
+                  text-indent: 10px;
+                  color: black;
+                `}
+              >
+                {props.datos.japanese}
+              </tr>
+              <tr>
+                {infoKanji.length > 0 ? (
+                  <td
+                    css={css`
+                      text-indent: 10px;
+                      font-size: 0.6em;
+                      /*color: #4d4d4d;*/
+                      color: white;
+                    `}
+                  >
+                    ({props.datos.reading})
+                  </td>
+                ) : (
+                  ""
+                )}
+              </tr>
+            </td>
+
+            <td
+              css={css`
+                font-size: 0.6em;
+                text-indent: 10px;
+                background-color: lightgreen;
+                color: white;
+                width: 8%;
+              `}
+            >
+              {props.datos.class}
+            </td>
+            <td
+              css={css`
+                font-size: 0.8em;
+                text-indent: 10px;
+                color: #333333;
+              `}
+            >
+              {props.datos.spanish}
+            </td>
+          </table>
         </td>
+
         <td
           css={css`
             width: 60px;
+            position: relative;
           `}
         >
           {infoKanji.length > 0 ? (
@@ -140,7 +175,11 @@ const ResultadoFila = (props) => {
               css={css`
                 width: 60px;
                 height: 30px;
+                position: absolute;
+                bottom: 0px;
+                right: 0px;
                 border: none;
+                background: none;
                 color: #151515;
               `}
               onClick={() => setMasInfo(!masInfo)}
@@ -167,7 +206,7 @@ const ResultadoFila = (props) => {
                       overflow-y: scroll;
                       transition: max-height 0.5s;
                       transition-timing-function: ease-in-out;
-                      max-height: 150px;
+                      max-height: 200px;
                     `
                   : css`
                       overflow: hidden;
@@ -330,7 +369,7 @@ const Main = () => {
           font-weight: bold;
         `}
       >
-        <span>Diccionario 辞書</span>
+        <span>Diccionario 青空</span>
       </div>
       <Query texto={texto} setTexto={setTexto} setResultados={setResultados} />
       {resultados == "loading" ? (
@@ -346,6 +385,6 @@ const Main = () => {
   );
 };
 
-const c = ""; //Importante. No borrar
+const c = ""; //No importante. Borrar
 
 export default Main;

@@ -1,9 +1,10 @@
 import { db } from "../../src/api/db";
 import { NextApiResponse, NextApiRequest } from "next";
+import { orderBy } from "lodash";
 
 // 々 es omitido
 function esKanji(c) {
-  return (c != "々") && (c >= "\u4e00") && (c <= "\u9faf");
+  return c != "々" && c >= "\u4e00" && c <= "\u9faf";
 }
 
 /**
@@ -18,11 +19,12 @@ export default async (req, res) => {
     .where("japanese", "like", word)
     .orWhere("spanish", "like", word)
     .orWhere("reading", "like", word)
+    .orderByRaw("locate('" + req.body.input + "', japanese)")
     .limit(50);
 
   const listaKanji = [];
-  dataHispadic.map(resultado => {
-    Array.from(resultado.japanese).map(kanji => {
+  dataHispadic.map((resultado) => {
+    Array.from(resultado.japanese).map((kanji) => {
       if (esKanji(kanji) && !listaKanji.includes(kanji)) listaKanji.push(kanji);
     });
   });
@@ -31,10 +33,10 @@ export default async (req, res) => {
   const dataKanji = await db("kanjidic")
     .select("*")
     .whereIn("kanji", listaKanji)
-    .limit(listaKanji.length)
+    .limit(listaKanji.length);
 
   const dataKanjidic = {};
-  dataKanji.map(resultado => {
+  dataKanji.map((resultado) => {
     dataKanjidic[resultado.kanji] = resultado;
   });
 
