@@ -18,7 +18,7 @@ const MasInfo = (props) => {
             left: 0px;
             height: 80px;
             width: 99%;
-            border-top: 2px solid greenyellow;
+            border-top: 2px solid #00499b;
             padding: 10px;
           `}
         >
@@ -110,7 +110,7 @@ const ResultadoFila = (props) => {
             <td
               css={css`
                 margin-left: 10px;
-                background-color: #5f73fe;
+                background-color: #03bff5;
                 width: 30%;
               `}
             >
@@ -129,7 +129,7 @@ const ResultadoFila = (props) => {
                     css={css`
                       text-indent: 10px;
                       font-size: 0.6em;
-                      /*color: #4d4d4d;*/
+                      color: #4d4d4d;
                       color: white;
                     `}
                   >
@@ -145,7 +145,7 @@ const ResultadoFila = (props) => {
               css={css`
                 font-size: 0.6em;
                 text-indent: 10px;
-                background-color: lightgreen;
+                background-color: #a80054;
                 color: white;
                 width: 8%;
               `}
@@ -156,7 +156,8 @@ const ResultadoFila = (props) => {
               css={css`
                 font-size: 0.8em;
                 text-indent: 10px;
-                color: #333333;
+                /*color: #333333;*/
+                color: black;
               `}
             >
               {props.datos.spanish}
@@ -180,7 +181,7 @@ const ResultadoFila = (props) => {
                 right: 0px;
                 border: none;
                 background: none;
-                color: #151515;
+                color: #002651;
               `}
               onClick={() => setMasInfo(!masInfo)}
             >
@@ -343,9 +344,33 @@ const Loading = () => {
   );
 };
 
+//Probando tonteras
+/*const InicioSesion = (props) => {
+  return (
+    <div
+      css={css`
+        animation-duration: 10s;
+        position: absolute;
+        top: 0px;
+        left: 10px;
+        width: 30%;
+        height: 100%;
+        background-color: #b7dbff;
+        border: 1px solid white;
+        color: black;
+        opacity: 0.7;
+      `}
+    >
+      Probado
+    </div>
+  );
+};
+*/
+
 const Main = () => {
-  const [texto, setTexto] = useState("星");
+  const [texto, setTexto] = useState("青空");
   const [resultados, setResultados] = useState(null);
+  const [inicio, setInicio] = useState(false);
   return (
     <>
       <div
@@ -370,6 +395,38 @@ const Main = () => {
         `}
       >
         <span>Diccionario 青空</span>
+        <button
+          css={css`
+            width: 120px;
+            height: 20px;
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            border: none;
+            text-align: right;
+            background: none;
+            color: white;
+          `}
+          onClick={() => (inicio ? setInicio(false) : setInicio(true))}
+        >
+          Iniciar sesión
+        </button>
+        <button
+          css={css`
+            width: 120px;
+            height: 20px;
+            position: absolute;
+            top: 35px;
+            right: 15px;
+            border: none;
+            text-align: right;
+            background: none;
+            color: white;
+          `}
+          onClick={""}
+        >
+          Ver comentarios
+        </button>
       </div>
       <Query texto={texto} setTexto={setTexto} setResultados={setResultados} />
       {resultados == "loading" ? (
@@ -381,10 +438,9 @@ const Main = () => {
           masInfo={resultados.masInfo}
         />
       ) : null}
+      {/*inicio ? InicioSesion() : null*/}
     </>
   );
 };
-
-const c = ""; //No importante. Borrar
 
 export default Main;

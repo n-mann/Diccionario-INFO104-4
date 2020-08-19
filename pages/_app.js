@@ -10,7 +10,7 @@ export const globalStyles = (
       body {
         /*padding: 1rem 1rem;*/
         margin: 0;
-        background: #f4ffff;
+        background: #fbffff;
         min-height: 100%;
         height: 100%;
         font-family: "Lato", sans-serif;
